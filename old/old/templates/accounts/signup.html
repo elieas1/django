@@ -1,0 +1,10 @@
+{% load static %}
+
+<form action="{% url 'magiclink:signup' %}" method="post">
+    {% csrf_token %}
+    {{ SignupForm }}
+    <button type='submit'>Signup</button>
+</form>
+<p>Already have an account? <a href='{% url 'magiclink:login' %}'>Log in here</a></p>
+
+<script src="{% static 'accounts/javascript.js' %}"></script>

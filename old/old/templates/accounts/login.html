@@ -1,0 +1,21 @@
+{% if messages %}
+    {% for message in messages %}
+        <li class="{{ message.tags }}">{{ message }}</li>
+    {% endfor %}
+{% endif %}
+<form method="POST" action="{% url 'accounts:login' %}">
+    {% csrf_token %}
+    <input type='text' name='email' placeholder="Email">
+    <input type="password" name='password' placeholder="Password">
+    <input type='submit'>
+</form>
+
+or login via email
+
+<form action="{% url 'magiclink:login' %}{% if request.GET.next %}?next={{ request.GET.next }}{% endif %}"
+    method="POST">
+    {% csrf_token %}
+    {{ login_form }}
+    <button type='submit'>Send login email</button>
+    <p>Don't have an account? <a href='{% url 'magiclink:signup' %}'>Sign up here</a></p>
+</form>

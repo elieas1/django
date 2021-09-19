@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            body{
+                display: flex;
+            }
+            div{
+                padding:5px;
+                border:1px solid rgb(219, 234, 240);
+                margin-left:5px;
+                margin-right:5px;
+                color: rgb(4, 6, 80);
+                font-size: 16px;
+                width:auto;
+            }
+            #col1,#col2,#col3{
+                text-align: center;
+            }
+        </style>
+    </head>
+<body>
+    <div style = "border:none;padding:0px;"id = "col1">
+        <div style="border:none">
+        <div style = "border-bottom:3px solid  rgb(49, 142, 179)"><h3>Django Templates</h3></div>
+        <div>{% autoescape on %} {% endautoescape %}</div>
+        <div>{% block %} {% endblock %}</div>
+        <div>{% comment %} {% endcomment %}</div>
+        <div>{% csrf_token %}</div>
+        <div>{% cycle 'row1' 'row2' %} or {% cycle rowvalue1 rowvalue2 %}</div>
+        <div>{% resetcycle %}</div>
+        <div>{% debug %}</div>
+        <div>{% extends "base.html" %} or {% extends variable %}</div>
+        <div>{% filter force_escape|lower%} {% endfilter %}</div>
+        <div>{% firstof var1 var2 var3 %}</div>
+        <div>{% for in %} {% endfor %}</div>
+        <div>{% for in %} {% empty %} {% endfor %}</div>
+        <div>{% if %} {% endif %}</div>
+        <div>{% ifchanged %} {% endifc­hanged %}</div>
+        <div>{% include "foo/bar.html" %}</div>
+        <div>{% include template_name %}</div>
+        <div>{% load %}</div>
+        <div>{% lorem [count] [method(w or p or b)] [random(optional)] %}</div>
+        <div>{% now "­" %}</div>
+        <div>{% regroup by as %}</div>
+        <div>{% spaceless %} {% endspa­celess %}</div>
+        <div>{% url 'some-url-name' v1 v2 %}</div>
+        <div>{% url 'some-url-name' arg1=v1 arg2=v2 %}</div>
+        <div>{% verbatim %} {% endver­batim %}</div>
+        <div>{% widthratio this_value max_value max_width %}</div>
+        <div>{% with total=business.employees.count %} {% endwith %}</div>
+        <div>{% blocktranslate with amount=article.price %} {% endblocktranslate %}</div>
+        <div>{% translate "starting point" as start %}</div>
+        <div style = "border-bottom:3px solid">{% static %}</div>
+        </div>
+    </div>
+    <div id='col2' style = "border:none;padding:0px;">
+        <div style = "border:none">
+            <div style = "border-bottom:3px solid rgb(49, 142, 179)"><h3>Notes</h3></div>
+            <div><(script src="{% static 'project/profile.js' %}"></(script></div>
+            <div><(link href="{% static 'project/profile.css' %}" rel="stylesheet"></div>
+            <div><(a href = "{% url "urlname" args=variable %}"></(a></div>
+            <div>obj = get_object_or_404(MyModel, pk=1)(import from django.shortcuts</div>
+            <div style = "border-bottom:3px solid">obj = get_list_or_404()(import from django.shortcuts</div>
+        </div>
+        <div style = "border:none">
+            <div style = "border-bottom:3px solid  rgb(49, 142, 179)"><h3>Settings</h3></div>
+            <div>ACCOUNT_UNIQUE_EMAIL = True</div>
+            <div >AUTH_USER_MODEL = 'appname.USER'</div>
+            <div style = "border-bottom:3px solid">def form_processor(request):<br>return {'form': form,'email':email}
+                <br>>in settings, under TEMPLATES,context-processors
+                <br>>add: 'app-name.file-name.function-name'</div>
+        </div>
+        <div style = "border:none">
+            <div style = "border-bottom:3px solid  rgb(49, 142, 179)"><h3>Sessions</h3></div>
+            <div>request.session['username'] = request.user.username</div>
+            <div>request.session.flush()</div>
+            <div style = "border-bottom:3px solid">for key, value in request.session.items():
+                print('{} => {}'.format(key, value))</div>
+
+        </div>
+        <div style = "border:none">
+            <div style = "border-bottom:3px solid  rgb(49, 142, 179)"><h3>Forms</h3></div>
+            <div>from django.core.exceptions import ValidationError</div>
+            <div>def clean_fieldname(self): ... return fieldname</div>
+            <div style = "border-bottom:3px solid">def save(self, commit=True):<br>user = User.objects.create_user(...)<br> return variablename  </div>
+
+        </div>
+        <div style = "border:none">
+            <div style = "border-bottom:3px solid  rgb(49, 142, 179)"><h3>Javascript</h3></div>
+            <div style = "border-bottom:3px solid">return JsonResponse({"user":[user.username for user in following]}, safe=False)</div>
+
+        </div>
+        <div style="border:none;">
+            <div style="border-bottom:3px solid  rgb(49, 142, 179)">
+                <h3>For loop variables</h3>
+            </div>
+            <div><strong>forloop.counter</strong> The current iteration of the loop (1-indexed)</div>
+            <div><strong>forloop.counter0</strong> The current iteration of the loop (0-indexed)</div>
+            <div><strong>forloop.revcounter</strong> The number of iterations from the end of the loop (1-indexed)</div>
+            <div><strong>forloop.revcounter0</strong> The number of iterations from the end of the loop (0-indexed)</div>
+            <div><strong>forloop.first</strong> True if this is the first time through the loop</div>
+            <div><strong>forloop.last</strong> True if this is the last time through the loop</div>
+            <div style="border-bottom:3px solid"><strong>forloop.parentloop</strong> For nested loops, this is the loop
+                surrounding the current one</div>
+        </div>
+    </div>
+
+
+    <div id = "col3" style = "border:none;">
+        <div style = "border-bottom:3px solid rgb(49, 142, 179)"><h3>Filters</h3></div>
+        <div>{{ value|add:"2" }}(works on numbers and lists)</div>
+        <div>{{ value|addslashes }}(Adds slashes before quotes)</div>
+        <div>{{ value|capfirst }}(Capitalizes the first character of the value)</div>
+        <div>{{ value|ljust:"10" }}(Left-aligns the value in a field of a given width)</div>
+        <div>{{ value|rjust:"10" }}(Right-aligns the value in a field of a given width)</div>
+        <div>{{ value|center:"15" }}(Centers the value in a field of a given width)</div>
+        <div>{{ value|cut:" " }}(Removes all values of arg from the given string)</div>
+        <div>{{ value|date:"D d M Y"(check format table) }}(Formats a date according to the given format)</div>
+        <div>{{ value|default:"nothing" }}(If value evaluates to False)</div>
+        <div>{{ value|default_if_none:"nothing" }}(If (and only if) value is None)</div>
+        <div>{{ value|dictsort:"name" }}(Sorts a list of dictionaries)</div>
+        <div>{{ value|dictsortreversed:"name" }}(Opposite of dictsort)</div>
+        <div>{{ value|divisibleby:"3" }}(Returns True if the value is divisible by the argument.)</div>
+        <div>{{ value|escape }}(Check documentation)</div>
+        <div>{{ value|escapejs }}(Check documentation)</div>
+        <div>{{ value|filesizeformat }}((i.e. '13 KB', '4.1 MB', '102 bytes', etc.)</div>
+        <div>{{ value|first }}(Returns the first item in a list.)</div>
+        <div>{{ value|last }}(Returns the last item in a list.)</div>
+        <div>{{ value|floatformat:"-3" or 3 or "0" }}(works on numbers and lists)</div>
+        <div>{{ value|get_digit:"2" }}(If value is 123456789, the output will be 8.)</div>
+        <div>{{ value|iriencode }}(Check documentation)</div>
+        <div>{{ value|join:" // " }}(Joins a list with a string, like Python’s str.join(list))</div>
+        <div>{{ value|json_script:"hello-data" }}(Outputs a Python object as JSON, wrapped in a <(script>)</div>
+        <div>{{ value|length }}(Returns the length of strings and lists.)</div>
+        <div>{{ value|length_is:"4" }}(Returns true or false)</div>
+        <div>{{ value|linebreaks }}(Joel\nis a slug = <(p>Joel<(br>is a slug</(p>.)</div>
+        <div>{{ value|linebreaksbr }}(same as above but with blocks)</div>
+        <div>{{ value|linenumbers }}(Displays text with line numbers)</div>
+        <div>{{ value|upper }}(Converts a string into all uppercase)</div>
+        <div>{{ value|lower }}(Converts a string into all lowercase)</div>
+        <div>{{ value|make_list }}(Returns the value turned into a list)</div>
+        <div>{{ value|phone2numeric }}(If value is 800-COLLECT, the output will be 800-2655328)</div>
+        <div>{{ value|pluralize }}(Returns a plural suffix)</div>
+        <div>{{ value|pluralize:"es" }}(Returns a plural suffix)</div>
+        <div>{{ value|pluralize:"y,ies" }}(Returns a plural suffix)</div>
+        <div>{{ value|random }}(Returns a random item from the given list)</div>
+        <div>{{ value|safe }}(Marks a string as not requiring further HTML escaping)</div>
+        <div>{{ value|safeseq }}(Useful in conjunction with other filters)</div>
+        <div>{{ some_list|slice:":2" }}(Returns a slice of the list)</div>
+        <div>{{ value|slugify }}(Slugify a text)</div>
+        <div>{{ value|stringformat:"E" }}(Formats the variable according to the argument)</div>
+        <div>{{ value|striptags }}(strip all [X]HTML tags)</div>
+        <div>{{ value|time:"H:i" }}(Formats a time according to the given format.)</div>
+        <div>{{ blog_date|timesince:comment_date }}((e.g., “4 days, 6 hours”))</div>
+        <div>{{ conference_date|timeuntil:from_date }}</div>
+        <div>{{ value|title }}(Converts a string into titlecase)</div>
+        <div>{{ value|truncatechars:7 }}("Elie is a slug" = "Elie i…".)</div>
+        <div>{{ value|truncatechars_html:7 }}(<(p>Elie is a slug<(/p>" = "<(p>Elie i…<(/p>".)</div>
+        <div>{{ value|truncatewords:2 }}(works on words)</div>
+        <div>{{ value|truncatewords_html:2 }}(works on words)</div>
+        <div>{{ value|unordered_list }}(Check documentation)</div>
+        <div>{{ value|urlencode }}(Check documentation)</div>
+        <div>{{ value|urlize }}(Check documentation)</div>
+        <div>{{ value|urlizetrunc:15 }}(Check documentation)</div>
+        <div>{{ value|wordcount }}(Returns the number of words.)</div>
+        <div>{{ value|wordwrap:5 }}(Wraps words at specified line length)</div>
+        <div style = "border-bottom:3px solid">{{ value|yesno:"yeah,no,maybe" }}(Maps values for True, False,(optionally) None)</div>
+    </div>
+
+</body>
+</html>

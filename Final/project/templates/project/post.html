@@ -1,0 +1,12 @@
+{% extends "project/layout.html" %}
+{% block body %}
+{{postinfo}}
+{{request.session.username}}
+{{request.user.is_active}}
+{{request.user.is_staff}}
+{{request.user.is_authenticated}}
+{{request.user.last_login}}
+{{request.user.user_permissions.all}}
+{{request.user.date_joined}}
+{{request.user.pagesfollowed.all}}}
+{% endblock %}

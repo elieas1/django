@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link href="{% static 'css/base.css' %}" rel="stylesheet">
+    <link href="{% static 'css/jobs.css' %}" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <section class="grid header">
+        <h1 class="gl12 gm12 gs12 gxs12 header-h1">JOIN OUR FAMILY</h1>
+        <p class="gl12 gm12 gs12 gxs12 header-p">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dicta
+            praesentium explicabo velit asperiores magni
+            consequatur, cum id, blanditiis numquam repellendus rem, perferendis veritatis! Sequi amet earum possimus
+            provident,
+            error sunt.</p>
+    </section>
+    <section class="listing">
+        {% for job in data %}
+        <div class="b-auto listing-item">
+            <span>i</span>
+            <p>{{job.title}}</p>
+            <div>
+                <a href="{{job.get_absolute_url}}">More Info</a>
+            </div>
+        </div>
+        {% endfor %}
+    </section>
+</body>
+
+</html>

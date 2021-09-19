@@ -1,0 +1,98 @@
+{% extends 'index/layout.html' %}
+{% load static %}
+
+{% block body %}
+
+<main class='w-auto grid'>
+    <section class="gl12 gm12 gs12 gxs12 grid initiative">
+        <div class="gl6 gm6 gs12 gxs12 w-auto initiativeImg">
+            <img class='w-auto h-auto inImg' src="" alt='our initiative'>
+        </div>
+        <p class="gl6 gm6 gs12 gxs12 initiativeBody">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Deserunt,
+            sequi ut? Dolor
+            obcaecati corrupti distinctio error molestiae consequatur, minus saepe totam, accusamus labore illo atque
+            laboriosam. Vero odio perferendis doloribus Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Perspiciatis, fuga dolores. Earum repudiandae quam, cupiditate suscipit aspernatur necessitatibus voluptatem
+            beatae ipsa repellendus iste alias, voluptatum ipsam odio, ut quaerat sequi?Lorem ipsum, dolor sit amet
+            consectetur adipisicing elit. Inventore debitis nulla necessitatibus quo molestiae ratione nihil suscipit
+            fuga voluptas, minima pariatur dolores numquam eligendi libero ad hic vero exercitationem maxime</p>
+    </section>
+
+
+    <section class="gl12 gm12 gs12 gxs12 grid rates">
+        <div class="gl12 gm12 gs12 gxs12 w-auto ratesTop">
+            <img class="ratesImg" src="{% static 'images/rates.jpg' %}">
+            <span>RATES</span>
+        </div>
+        <div class='gl3 gm3 rates-odd gs6 gxs12 flexV w-auto'>
+            <h4 class="w-auto t-auto ratesHeading">Silver</h4>
+            <p class='ratesCost w-auto t-auto'>$300/month</p>
+            <p class="ratesBody w-auto t-auto">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Delectus ipsum
+                perspiciatis
+                doloribus exercitationem! In debitis necessitatibus nulla praesentium est ratione amet modi dolorem
+                cumque
+                facere facilis quo, laboriosam sed libero?</p>
+        </div>
+        <div class='gl3 gm3 rates-even gs6 gxs12 flexV'>
+            <h4 class="w-auto t-auto ratesHeading">Gold</h4>
+            <p class='ratesCost w-auto t-auto'>$400/month</p>
+            <p class="ratesBody w-auto t-auto">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Delectus ipsum
+                perspiciatis
+                doloribus exercitationem! In debitis necessitatibus nulla praesentium est ratione amet modi dolorem
+                cumque
+                facere facilis quo, laboriosam sed libero?</p>
+        </div>
+        <div class='gl3 gm3 rates-odd gs6 gxs12 flexV'>
+            <h4 class="w-auto t-auto ratesHeading">Platinum</h4>
+            <p class='ratesCost w-auto t-auto'>$500/month</p>
+            <p class="ratesBody w-auto t-auto">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Delectus ipsum
+                perspiciatis
+                doloribus exercitationem! In debitis necessitatibus nulla praesentium est ratione amet modi dolorem
+                cumque
+                facere facilis quo, laboriosam sed libero?</p>
+        </div>
+        <div class='gl3 gm3 rates-even gs6 gxs12 flexV'>
+            <h4 class="w-auto t-auto ratesHeading">Diamond</h4>
+            <p class='ratesCost w-auto t-auto'>$1000/month</p>
+            <p class="ratesBody w-auto t-auto">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Delectus ipsum
+                perspiciatis
+                doloribus exercitationem! In debitis necessitatibus nulla praesentium est ratione amet modi dolorem
+                cumque
+                facere facilis quo, laboriosam sed libero?</p>
+        </div>
+    </section>
+
+
+    <section class='gl12 gm12 gs12 gxs12 grid team'>
+        <h2 class="gl12 gm12 gs12 gxs12 teamHeader">Our Team</h2>
+
+        <div class="gl12 gm12 gs12 gxs12 grid teamBody-top">
+            <img class="gl4 gm4 gs6 gxs12 w-auto teamImg" src="">
+            <div class='gl3 gm5 gs6 gxs12 teamBody-top-info'><span class="pxs0" data-type="name">Karam Hammoud</span>
+                <br /><span data-type="position">-CEO And Director Of Finances</span>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab labore nobis commodi soluta iusto veniam,
+                    reprehenderit repellat, dolores repellendus fugiat dolor quisquam dignissimos, esse autem accusamus
+                    ut itaque temporibus sed.</p>
+            </div>
+        </div>
+
+        <div class="gl12 gm12 gs12 gxs12 grid teamBody-bottom">
+            <div class='gl5 gm4 ds0 dxs0'></div>
+            <div class='gl3 gm4 gs6 gxs12 teamBody-bottom-info'><span data-type="name">Reema O.Adem</span>
+                <br /><span data-type="position">-CEO And Director Of Finances</span>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab labore nobis commodi soluta iusto veniam,
+                    reprehenderit repellat, dolores repellendus fugiat dolor quisquam dignissimos, esse autem accusamus
+                    ut itaque temporibus sed.</p>
+            </div>
+            <img class="gl4 gm4 gs6 gxs12 w-auto teamImg" src="">
+        </div>
+
+    </section>
+
+
+</main>
+
+<script src="{% static 'js/index.js' %}"></script>
+
+{% endblock %}

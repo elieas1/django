@@ -1,0 +1,64 @@
+{% extends "network/layout.html" %}
+{% load static %}
+
+{% block body %}
+
+<div id = "followposts">
+    This page includes posts from: 
+    {% for l in list %}
+    <a href = "http://127.0.0.1:8000/{{l}}">{{l}}</a>,
+    {% endfor %}
+</div>
+{% for n in page_obj %}
+<div id = "wholeposts">
+    <div id = "post">
+        <div id = "nameanddate">
+        <div>
+            {{n.name}}
+        </div>
+        <div>
+            {{n.date}}
+        </div>
+    </div>
+        <div class = "content">
+            {{n.posts}}
+        </div>
+        <div>
+            <div id="likesandedit">
+                <div class = "likes">
+                    likes : {{n.likes}}
+                </div>
+            {% if user.username != n.name %}
+                <div>
+                    <form action = "post/{{n.id}}" onsubmit="return false"></form>
+                    {% if n.id in qwerty %}
+                        <button style = "color:white;background-color: rgb(0, 0, 30);" onclick = "like(this)" class="likebutton">Like</button>
+                    {% else %}
+                        <button onclick = "like(this)" class="likebutton">Like</button>
+                    {% endif %}
+                        <input class = "postid" hidden = "true" value = "{{n.id}}">
+                    </form>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+    {% if page_obj.has_previous %}
+        <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
+    {% endif %}
+    {% for n in number %}
+        <li class="page-item"><a class="page-link" href="?page={{n}}">{{n}}</a></li>
+    {% endfor %}
+    {% if page_obj.has_next %}
+        <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a></li>
+    {% endif %}
+    </ul>
+</nav>
+{% block script %}
+    <script src="{% static 'network/following.js' %}"></script>
+{% endblock %}
+{% endblock %}

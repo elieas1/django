@@ -1,0 +1,24 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Encyclopedia
+    
+{% endblock %}
+
+{% block body %}
+    <h1 style = "text-align: center;font-family: 'Times New Roman', Times, serif;"> Create New Entry</h1>
+    <br>
+    <form action = "newentry", method = "POST">
+        {% csrf_token %}
+        <div style = "padding-right:60px; text-align: center;">
+        <label for="title">Title: </label>
+        <input autocomplete="off" style = "padding-left: 10px ;margin-left:30px; float: center;border-radius: 25px;" type = "text" name = "title" value="{{nf}}" required = "required">
+        </div>
+        <div style = "text-align:center;margin-top:30px;">
+        <textarea name = "desc" placeholder = "Description" required = "required" style="width:500px;height:300px;"></textarea>
+        </div>
+        <div style = "text-align:center ;margin-top:30px">
+            <button style="color :white;background-color: rgb(46, 125, 230); border: 0px;width: 200px;">Save</button>
+        </div>
+    </form>
+{% endblock %}

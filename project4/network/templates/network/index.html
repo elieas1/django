@@ -1,0 +1,79 @@
+{% extends "network/layout.html" %}
+{% load static %}
+{% block body %}
+{% if user.is_authenticated %}
+    <div id = "addpost">
+        <div id = "postitems">
+            <form id = "form" method = "POST">
+            {% csrf_token %}
+            <div id = "label-for-post">
+                Hi {{user.username}}
+            </div>
+            <div id = "text-area">
+                <div id = "textarea"><textarea name = "textarea" placeholder = "What is on your mind?"></textarea></div>
+            </div>
+            <div id = "post-button">
+                <button id = "postbutton">Post</button>
+            </div>
+            </form>
+        </div>
+    </div>
+    <div id = "wholeposts">
+        {% for p in page_obj %}
+            <div id = "post">
+                <div id = "nameanddate">
+                    <div>
+                        <a href = "http://127.0.0.1:8000/{{p.name}}"> {{p.name}}</a>
+                    </div>
+                    <div>
+                        {{p.date}}
+                    </div>
+                </div>
+
+                <div>
+                    <div class = "content">
+                        <span>{{p.posts}}</span>
+                    </div>
+                    <div id="likesandedit">
+                        <div class = "likes">
+                            likes : {{p.likes}}
+                        </div>
+                        {% if user.username == p.name %}
+                        <div id = "editpost">
+                            <button onclick = "edit(this)" id = "edit">Edit Post</button>
+                            <input class = "postid" hidden = "true" value = "{{p.id}}">
+                        </div>
+                        {% endif %}
+                        {% if user.username != p.name %}
+                        <div>
+                            <form action = "post/{{p.id}}" onsubmit="return false"></form>
+                            {% if p.id in qwerty %}
+                                <button style = "color:white;background-color: rgb(0, 0, 30);" onclick = "like(this)" class="likebutton">Like</button>
+                            {% else %}
+                                <button onclick = "like(this)" class="likebutton">Like</button>
+                            {% endif %}
+                                <input class = "postid" hidden = "true" value = "{{p.id}}">
+                            </form>
+                        </div>
+                    {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
+            {% endif %}
+            {% for n in number %}
+                <li class="page-item"><a class="page-link" href="?page={{n}}">{{n}}</a></li>
+            {% endfor %}
+            {% if page_obj.has_next %}
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a></li>
+            {% endif %}
+            </ul>
+        </nav>
+    </div>
+{% endif %}
+<script src="{% static 'network/index.js' %}"></script>
+{% endblock %}

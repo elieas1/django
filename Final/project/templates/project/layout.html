@@ -1,0 +1,84 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,shrink-to-fit = no">
+        {% block head %}
+        {% endblock %}
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <title>{% block title %}Social Network{% endblock %}</title>
+        <link href="{% static 'project/styles.css' %}" rel="stylesheet">
+        <script src="{% static 'project/layout.js' %}"></script>
+    </head>
+    <body>
+        <div id = "navwrapper">
+            <nav id = "nav">
+                <a class = "nav-link" href = "{% url "index" %}"><button class = "nav-forum">Forum</button></a>
+                <a class = "nav-link" href = "{% url "index" %}"><button class = "nav-item">Home</button></a>
+                <a class = "nav-link" href = "{% url "following" %}"><button class = "nav-item">Following</button></a>
+                <button id = "messagebutton" class = "nav-item">Messages</button>
+                <button onclick = "openform()" class = "nav-item">Add Post</button>
+                <input id = "searchbar" placeholder="Search" type = "text">
+                <div class="dropdown">
+                    <button onclick="myFunction()" class="dropbtn">{{request.user}}</button>
+                    <div id="myDropdown" class="dropdown-content">
+                        <div>
+                            <img src = {{request.user.image.url}} width='40px'>
+                            <a href="{{request.user.get_absolute_url}}">Profile</a>
+                            <a href="{% url 'logout' %}">Log Out</a>
+                            <a href="#">Link 3</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <div id = "form">
+            <div id = "formcontent">
+                <form action = "{% url "index" %}" method = "POST">
+                    {% csrf_token %}
+                    <div style = "margin:10px">
+                        {{form.title}}
+                        <a id = 'closebutton' href="javascript:void(0)" class="closebutton" onclick="closeform()"><strong>X</strong></a>
+                    </div>
+                    <div>{{form.body}}</div>
+
+                    <input name = "submitpost" class = "submitbutton" type = "submit">
+                </form>
+            </div>
+        </div>
+        <div id = "messages">
+            <div id = "messagecontent">
+                <div id = "nav-messages">
+                    <button class = "nav-messages-buttons" id="inbox">Inbox</button>
+                    <button class = "nav-messages-buttons" id="sent">Sent</button>
+                    <button class = "nav-messages-buttons" id="archived">Archived</button>
+                    <button class = "nav-messages-buttons" id="compose">Compose</button>
+                    <a style = "margin-left:20px;font-size: 30px;position: absolute;right:3%" href="javascript:void(0)" class="closebutton" onclick="closemessages()"><strong>X</strong></a>                    
+                </div>
+            
+                <div id="emails-view">
+
+                </div>
+                <div id = "compose-view">
+                    <div id = "recipient-help"></div>
+                    <form id="compose-form">
+                        <div class="form-group">
+                            To: {{email.recipient}}
+                        </div>
+                        <div class="form-group">
+                            {{email.subject}}
+                        </div>
+                            {{email.body}}
+                        <input style = "margin-top:10px" id="submit" type="submit" class="btn btn-primary"/>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class = "body">
+            {% block body %}
+            {% endblock %}
+        </div>
+    </body>
+</html>

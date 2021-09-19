@@ -1,0 +1,60 @@
+body{
+    margin:0;
+    text-align: center;
+    height:100vh;
+    overflow: hidden;
+    align-items: center;
+    background-image: url(pattern.jpg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    image-rendering: optimizeQuality;
+}
+a{
+    text-decoration: none;
+    color:rgb(21, 98, 241);
+    font-size: 1.1rem;
+    font-family: Comic Sans Ms;
+}
+h1{
+    font-family:Comic Sans MS;
+    font-size: 3rem;
+    color: rgb(21, 98, 241)
+}
+.login
+{
+    font-family: Comic Sans MS;
+    height:30px;
+    margin-top:10px;
+    outline: none;
+    padding-left:10px;
+    border: 1px solid lightblue;
+    width:300px;
+    height:40px;
+    font-size: 1rem;
+
+}
+.login:hover{
+    transition: 300ms;
+    border: 1px solid rgb(21, 98, 241);
+
+}
+.login:focus{
+    transition: 300ms;
+    border: 1px solid rgb(21, 98, 241);
+    box-shadow:0px 0px 5px rgb(21, 98, 241)
+
+}
+.logbut
+{
+    margin-top:10px;
+    margin-bottom:10px;
+    width:150px;
+    height:25px;
+    outline:none;
+    border:none;
+    cursor: pointer;
+    background-color: rgb(50,50,250);
+    color:white;
+    font-size: 1rem;
+    font-family: Comic Sans MS;
+}

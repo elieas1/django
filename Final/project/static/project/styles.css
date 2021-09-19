@@ -1,0 +1,287 @@
+body {
+  font-family: Comic Sans MS;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+#nav {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;  
+  justify-content: center;
+}
+#navwrapper {
+  text-align: center;
+}
+.nav-item {
+  height: 40px;
+  font-family: Comic Sans MS;
+  background-color: white;
+  border: none;
+  outline: none;
+  width: 100px;
+  text-align: center;
+  font-size: 1.5rem;
+}
+.nav-item:hover {
+  font-family: Comic Sans MS;
+  transition: 200ms;
+  background-color: lightblue;
+  width: 100px;
+  text-align: center;
+  cursor: pointer;
+}
+.nav-link {
+  text-decoration: none;
+  color: black;
+}
+.nav-forum {
+  height: 40px;
+  font-family: Comic Sans MS;
+  background-color: white;
+  color: rgb(182, 24, 24);
+  border: none;
+  outline: none;
+  width: 100px;
+  text-align: center;
+  font-size: 1.7rem;
+  cursor: pointer;
+}
+
+#searchbar {
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-right: 10px;
+  margin-left: 10px;
+  outline: none;
+  border: 1px solid rgb(241, 238, 238);
+  height: 30px;
+  outline: none;
+  padding: 5px;
+}
+#searchbar:hover {
+  transition: 500ms;
+  border: 1px solid rgb(50, 50, 250);
+}
+#searchbar:focus {
+  transition: 500ms;
+  border: 1px solid rgb(50, 50, 250);
+}
+
+.dropbtn {
+  width: 100px;
+  background-color:rgb(50, 50, 250);
+  color: white;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  outline: none;
+}
+
+.dropbtn:hover,
+.dropbtn:focus {
+  background-color: rgb(40,40,240)
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+.dropdown-content > div{
+  display: grid;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.show {
+  display: block;
+}
+
+#form {
+  height: 100%;
+  width: 100%;
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.9);
+  overflow-x: hidden;
+}
+#formcontent {
+  position: relative;
+  text-align: center;
+  color: black;
+  border: 1px solid white;
+  width: 40vw;
+  height: 60vh;
+  position: fixed;
+  top: 20%;
+  left:27%;
+  background-color: white;
+}
+#closebutton {
+  position: absolute;
+  right: 5%;
+  font-size: 1.7rem;
+  text-decoration: none;
+}
+#formtitle {
+  padding: 15px;
+  margin-top: 10px;
+  height: 5vh;
+  width: 90%;
+  font-size: 1.8rem;
+  font-family: Comic Sans MS;
+  border: none;
+  border-bottom: 1px solid;
+  outline: none;
+}
+#formbody {
+  padding: 10px;
+  font-size: 1.8rem;
+  width: 90%;
+  height: 40vh;
+  font-family: Comic Sans MS;
+  border: none;
+  border-bottom: 1px solid;
+  outline: none;
+  resize: none;
+}
+.submitbutton {
+  width: 100px;
+  height: 25px;
+  border: none;
+  border-radius: 25px;
+  outline: none;
+  cursor: pointer;
+  margin-top: 10px;
+  color: white;
+  background-color: rgb(64, 64, 224);
+}
+
+#category {
+  width: 150px;
+  height: 30px;
+  font-family: Comic Sans MS;
+  font-size: 1.6rem;
+}
+
+#messages {
+  height: 100%;
+  width: 100%;
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.9);
+  overflow-x: hidden;
+  transition: 0.5s;
+  text-align: center;
+  align-items: center;
+}
+
+#messagecontent {
+  position: relative;
+  top: 25%;
+  text-align: center;
+  margin-top: 30px;
+  color: black;
+  border: 1px solid white;
+  width: 600px;
+  height: 400px;
+  top: 50%;
+  left: 50%;
+  margin-top: -200px;
+  margin-left: -300px;
+  background-color: white;
+}
+#nav-messages {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  height: 15%;
+  align-items: center;
+  border-bottom: 1px solid blue;
+}
+.nav-messages-buttons {
+  outline: none;
+  color: white;
+  background-color: rgb(50, 50, 250);
+  border: none;
+  height: 30px;
+  width: 100px;
+  text-align: center;
+  border-right: 1px solid white;
+}
+.nav-messages-buttons:nth-child(1) {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+.nav-messages-buttons:nth-child(4) {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+#emails-view {
+  width: 100%;
+  padding: 10px;
+  height: 340px;
+  word-wrap: break-word;
+  text-align: center;
+  overflow-y: auto;
+}
+
+#emailbox {
+  border: 1px solid rgb(50, 50, 250);
+  border-bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  height: 40px;
+  align-items: center;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+#emailbox:nth-last-child(1) {
+  border-bottom: 1px solid rgb(50, 50, 250);
+}
+
+#emailbox:hover {
+  transition: 0ms;
+  cursor: pointer;
+}
+#recipient-help {
+  position: relative;
+  width: 200px;
+  left: 2.5%;
+  top: 50%;
+  margin: auto;
+  border: 1px solid;
+}

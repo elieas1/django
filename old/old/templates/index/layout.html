@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% block head %}
+    {% endblock %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Home{% endblock %}</title>
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> -->
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+    <link href="{% static 'css/base.css' %}" rel="stylesheet">
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css' rel='stylesheet'>
+
+</head>
+
+<body>
+    <header>
+        <nav class='nav'>
+            <ul>
+                <li class="dl0 dm0 ds0"><span class='fa fa-bars'></span></li>
+                <li><a href="{% url 'index' %}">Home</a></li>
+                <li><a href="{% url 'jobs' %}">Jobs</a></li>
+                <li><a href="{% url 'blog' %}">Blog</a></li>
+                {% if user.is_authenticated %}
+                <li><a href="{% url 'accounts:logout' %}">Logout</a></li>
+                {% else %}
+                <li><a href="{% url 'accounts:login' %}">Login</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+        <div class='navImage'>
+            <img src="{% static 'images/heading.jpg' %}">
+        </div>
+    </header>
+    <main>
+        {% block body %}
+        {% endblock %}
+    </main>
+
+    <footer class='w-auto footer'>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos, optio mollitia fuga obcaecati exercitationem iure
+        officia sint quisquam voluptate quasi necessitatibus accusamus quos nemo corporis, in earum, reprehenderit
+        assumenda sed!Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos, optio mollitia fuga obcaecati
+        exercitationem iure
+        officia sint quisquam voluptate quasi necessitatibus accusamus quos nemo corporis, in earum, reprehenderit
+        assumenda sed!Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos, optio mollitia fuga obcaecati
+        exercitationem iure
+        officia sint quisquam voluptate quasi necessitatibus accusamus quos nemo corporis, in earum, reprehenderit
+        assumenda sed!Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos, optio mollitia fuga obcaecati
+        exercitationem iure
+        officia sint quisquam voluptate quasi necessitatibus accusamus quos nemo corporis, in earum, reprehenderit
+        assumenda sed!Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos, optio mollitia fuga obcaecati
+        exercitationem iure
+        officia sint quisquam voluptate quasi necessitatibus accusamus quos nemo corporis, in earum, reprehenderit
+        assumenda sed!Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos, optio mollitia fuga obcaecati
+        exercitationem iure
+        officia sint quisquam voluptate quasi necessitatibus accusamus quos nemo corporis, in earum, reprehenderit
+        assumenda sed!
+    </footer>
+</body>
+
+</html>

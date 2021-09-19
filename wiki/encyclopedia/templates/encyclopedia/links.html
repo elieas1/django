@@ -1,0 +1,24 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Encyclopedia
+{% endblock %}
+
+{% block body %}
+{% if link %}
+    {{link|safe}}
+    <div>
+        <form action = "edit" method = "POST">
+            {% csrf_token %}
+            <button style="color :white;background-color: rgb(46, 125, 230); border: 0px; width: 100px;" name = "qwe" value = {{name}}>Edit Page</button>
+        </form>
+    </div>
+{% else %}
+    <h2 style = "margin-top: 30px;"> Requested Page Does Not Exist</h2>
+    <br>
+    <form action="newentry" method="POST">
+        {% csrf_token %}
+        <button style="color :white;background-color: rgb(46, 125, 230); border: 0px;width: 200px;" name = "zxc" value="{{name}}">Create {{name}}</button>
+    </form>
+{% endif %}
+{% endblock %}

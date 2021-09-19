@@ -1,0 +1,99 @@
+{% extends "network/layout.html" %}
+{% load static %}
+
+{% block body %}
+<div id = "imageandpic">
+    <div id = "image">
+        <div id = "changeprofile">
+            <form method == "POST">
+                <label id = "label" for = "choose"><img src = "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSyLKtM2wHI9CjAzz5NZFBM7tHdvTaD8mE4-g&usqp=CAU" width="30px"></label>
+                <input  hidden = "true" id = "choose" type = "file" accept="image/*" >
+            </form>
+        </div>
+        <div id = "userinfo">
+            {% for q in user1 %}
+            <div style = "color:white;width:123px;text-align:center" id = "username">
+                {{q.username}}
+            </div>
+            <div style = "color:white;width:200px;margin-left:300px;font-size:1.4rem" id = "followers">
+                <div>
+                    Followers: 
+                </div>
+                <div style="margin-left:10px;font-size:1.4rem" id = "numberoffollowers">
+                    {{q.followers}}
+                </div>
+                <form>
+                {% if profile != user.username %}   
+                    {% if qwe == True %}    
+                    <button style="margin-left:10px" id = "follow">UnFollow</button>
+                    {% else %}
+                    <button style="margin-left:10px" id = "follow">Follow</button>
+                    {% endif %}
+                {% endif %}
+                </form>
+            </div>
+            <div style = "color:white;width:auto;margin-left:300px;font-size:1.4rem" id = "following">
+                Following: {{q.following}}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<div id = "wholeposts">
+    {% for n in page_obj %}
+        <div id = "post">
+            <div id = "nameanddate">
+                <div>
+                    {{n.name}}
+                </div>
+                <div>
+                    {{n.date}}
+                </div>
+            </div>
+            <div>
+                <div class = "content">
+                    <span>{{n.posts}}</span>
+                </div>
+                <div id = "likesandedit">
+                    <div class = "likes">
+                        likes : {{n.likes}}
+                    </div >
+                    {% if user.username == n.name %}
+                    <div id = "editpost">
+                        <button onclick = "edit(this)" id = "edit">Edit Post</button>
+                        <input class = "postid" hidden = "true" value = "{{n.id}}">
+                    </div>
+                    {% endif %}
+                </div>
+            </div>            
+        </div>
+    {% endfor %}
+    <div id = "nav">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+                {% if page_obj.has_previous %}
+                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
+                {% endif %}
+                {% for n in number %}
+                    <li class="page-item"><a class="page-link" href="?page={{n}}">{{n}}</a></li>
+                {% endfor %}
+                {% if page_obj.has_next %}
+                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+</div>
+    <script>
+        document.querySelector('#choose').onchange = function(){
+        console.log("this");
+        document.querySelector('#changeprofile').style.backgroundImage = `url('${this.value}')`}
+    </script>
+
+
+
+{% block script %}
+    <script src="{% static 'network/profile.js' %}"></script>
+{% endblock %}
+{% endblock %}

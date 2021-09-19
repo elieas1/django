@@ -1,0 +1,16 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Encyclopedia
+{% endblock %}
+
+{% block body %}
+    <h1 style = "margin-left: 30px">Similar To Your Search</h1>
+    <ul>
+        {% for entry in entries %}
+        {% if name in entry or name1 in entry or name2 in entry %}
+            <li><a href = "{{ entry }}">{{entry}}</a></li>
+        {% endif %}
+        {% endfor %}
+    </ul>
+{% endblock %}

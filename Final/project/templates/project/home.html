@@ -1,0 +1,49 @@
+{% extends "project/layout.html" %}
+{% load static %}
+{% block head %}
+    <link href="{% static 'project/home.css' %}" rel="stylesheet">
+{% endblock %}
+{% block body %}
+<div id = "whole">
+    <div id = "sidebar">
+        {% for post in category %}
+            <a href = "{{post.get_absolute_url}}"><div class = "sidebaritem"><img width="20px" height = "15px" 
+               style = "margin-right:5px" src="{% static 'project/'%}{{post.pagename}}.jpg">{{post.pagename}}</div></a>
+        {% endfor %}    
+    </div>
+    <div id = "allposts">
+        {% for post in posts %}
+        <div id = "post">
+            <div id = "postupper">
+                <div id = "imageanduser">
+                    <div><img  style = "border-radius: 70px;" width="40px" src="{{post.username.image.url}}"></div>
+                    <div style="margin-left: 5px;"><a href = "{% url "profile" account=post.username %}">{{post.username}}</a> . {{post.date}}</div>
+                </div>
+                <div style="font-size:1.6rem"><a href = "{{post.get_absolute_url}}"><strong>{{post.title}}</strong></a></div>
+                <div>{{post.body}}</div>
+                <hr>
+                <div id = "likesandcomments">
+                    <div id = "likeandcommentbuttons">
+                        <button id='upvotes' {% if post in request.user.upvotedposts.all %}style="border:2px solid rgb(50,50,250)"{% else %}style="border:2px solid rgb(231, 231, 231);"{% endif %} onclick='upvote(this)'>{{post.likes}}</button>
+                        <div id = "clickforcomments" onclick="opencomments(this)" style = "margin-left:10px;padding:5px">{{post.postcomment.all|length}} Comment{{post.postcomment.all|length|pluralize}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class = "postlower" hidden>
+                <div id = "commentdiv">
+                    <div id = "addcomment">
+                        {{request.user.username}}
+                        <input class = "addcommentinput" type = "text" placeholder = "Add a comment...">
+                        <button class = "addcommentbutton" onclick = {addcomment(this)}>Add comment</button>
+                    </div>
+                    <div id = "showcomments">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<script src="{% static 'project/home.js' %}"></script>
+{% endblock %}

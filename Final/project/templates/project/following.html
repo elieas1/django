@@ -1,0 +1,80 @@
+{% extends "project/layout.html" %}
+{% load static %}
+{% block head %}
+    <link href="{% static 'project/home.css' %}" rel="stylesheet">
+{% endblock %}
+{% block body %}
+<div id = "whole">
+    <div id = "sidebar">
+        {% for post in category %}
+            <a href = "{{post.get_absolute_url}}"><div class = "sidebaritem"><img width="20px" height = "15px" 
+               style = "margin-right:5px" src="{% static 'project/'%}{{post.pagename}}.jpg">{{post.pagename}}</div></a>
+        {% endfor %}    
+    </div>
+    <div id = "allposts">
+        {% for post in posts %}
+        <div id = "post">
+            <div id = "postupper">
+                <div id = "imageanduser">
+                    <div><img  style = "border-radius: 70px;" width="40px" src="{{post.username.image.url}}"></div>
+                    <div style="margin-left: 5px;"><a href = "{% url "profile" account=post.username %}">{{post.username}}</a> . {{post.date}}</div>
+                </div>
+                <div style="font-size:1.6rem"><a href = "{{post.get_absolute_url}}"><strong>{{post.title}}</strong></a></div>
+                <div>{{post.body}}</div>
+                <hr>
+                <div id = "likesandcomments">
+                    <div id = "likeandcommentbuttons">
+                        <button id='upvotes' {% if post in request.user.upvotedposts.all %}style="border:2px solid rgb(50,50,250)"
+                            {% else %}style="border:2px solid rgb(231, 231, 231);" {% endif %} onclick='upvote(this)'>{{post.likes}}</button>
+                        <div id = "clickforcomments" onclick="opencomments(this)" style = "margin-left:10px;cursor: pointer;padding:5px">{{post.postcomment.all|length}} Comment{{post.postcomment.all|length|pluralize}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class = "postlower" hidden>
+                <div id = "commentdiv">
+                    <div id = "addcomment">
+                        {{request.user.username}}
+                        <input class = "addcommentinput" type = "text" placeholder = "Add a comment...">
+                        <button class = "addcommentbutton" onclick = {addcomment(this)}>Add comment</button>
+                    </div>
+                    <div id = "showcomments">
+                        {% for comment in post.postcomment.all %}
+                        <div id = "comment">
+                            <div id = "imageanduser">
+                                <img width = "30px" src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAANwAAADlCAMAAAAP8WnWAAAAY1BMVEX+/v5Bp+8yo+7G4fmOxvQ8pe9Bp+7s9f0xou5Apu/8/v75/P632/groe5gtPG32fdYsfGbzvbz+f1ruPKCwvTk8vzX6/ve7vzK5fnU6ftxvPOt1/hNrfC+3/mi0vaLyPWUyvWMYN4TAAAGTElEQVR4nO2d2ZaiMBBAJXZCAsKwgwjo/3/lENTW1lG2xFR66p7T/dQP3K4slX2zQRAEQRAEeYNbbP9c2Ba56a9Rhpf/ySIaBOSbgDtRtitNf9hqkjZzAkKF4zjyp4cNvwUlgZO1ienvW4Ynf+0zyi9O/0DQgGZ77/uvbSI5hAF9aXaBBuHOvvD5h+ZN0K70ZVTw5uCb/tp5tNEEtWvx5FFr+ntnkGdkqtm5cPLMmt5hx+a5ybaF7Ux/9ST841w1hzFHkC8Lal4ezXY7QyPwRbOgdHJL8mgnCtNf/55dsFStRwSgK94uuOZXv89Ouq0Drt2OOysK5RA6sLFr+dq4ST0OMlvZrw3bxY7tTZs84zajQ4Bp0MY17fKInypy61OxFFquEvejACXFsoecTNv8pFqYc72w25r2uSdpVEVtQDSQRufzBwLv4UfTRjf2Knq4n3ZwcmhlLeU3NIQyIdauTimfAZOoREpbkzMiMm11pgpWjHJewmF0B+prnISGpr0kpYYaJwkgrJScFPdxV+iXabPNxmNC6KhzfaZqvjfYagociAwz09KcSKj5HExtynyPaEyXy1Jb4JhDTbeXO+U58w1ieibsqC1yACpdqK3KOUwYTlIUD8F/uBkfkJe61M6YXdQqNFa5vtKZHY/vtOUnEsPNpc6ewLhcp7VYks6onM5uznhHh3LL5cyOV49Uy0AVipxGN9PFMtbaz9HYqNyv7ud2RGedMyy3X7wZagrU7Np/qdPNEWbnGTSO5wAssGociTumR+K/ew5F54DO+OyXzqG48XlLrTPOpt2U79K4uQFYw6qII/QEj1em3Ta+nGDU4SYcAPvbdHUGAEpl315qWhOHsYko1BA6BmQ3w6aafuBqBgCakwEdoQMSOBk69XIBkMBp2EMkaGra6ZtC/X5L42nljZivOcLzDDE77fUTX9WhgjO0AZCc3NjL9FlZjml4YuiJbrBT40YOpm0e8NRtk6KZ6Z1DTySqunIaQjpUcCFv7q6XWOHWgDyXWzKxvkkRDaAe7p4+g14rJwiYtOuRas1Z48ENTkr5TM5kq7I4WaEMZH27kq9JVYC7yROQi6f6OLgTj8+ciFjSIwh53hFc7/1EyxYUTdpAOZk0gpvxOUcNhLwwJAN3xPglbUOmF0whiFX39GySzpk6Jya40wHMJt/ixmxK9ARhsT0l8kZyiILB72X9E5SHB9ui9k0ZR5y8aDsp4c0JaJY8leJQ84ATcs2pmdSSlwnWB8vNLuTb7pRGVAzQKD11LfBEC0EQBEEQBEEQBEEQBEGQ347n+4l7R+L78JcZ3+Mlbl61XZxlYRhG9zPpURimWRZ3bZW7iW2avltUcZZGTHBOaM/D7hs579xDCHdYlGZxW7jwl8N7/HzbZRHrP3xQGl9gFVKSNlEdb3PIhknV1Y3Tf2ofp5l7iYY4Ok3dVRAX69xtHA5ecifDrF02d/8F0Ruy6LiFJOhVcUg5UXOqWoj+XxSdKhBFNN/VvZjCMyFCXopFOU0PhgNYxmFAqNqd6Wc/4VAeNLGpw0peGTeB1gP+8imw3u/jHaFXxJfVfN3QIIqLT1ZAd3igTOeVEzeEjF/YfWj9PGlrh2u94+UffoTWH3jKrfhqPmt2hZLmS99Zir5e+7t0+YNJq+k7QH0v8ckNT8pOfSyCUc5OOnq/8uh8pHUcQVBRq25cylppFrIKypXqufX405SfhAbK9JLTq71p5qD8S0Xd8w5M6/VXS+Fs/UG0Il17ykMXgofr+j0/puBK5A1B4xVJZ5mCLJE3SLq4YTkfEABaKtnwZYufMI213LmgGEGWXDHl11ovQFQHqWdXPD+U1c2G0Dk0nGnnR4BbyUdINMvOKjf5uO4cOz1P7eiDzLiE4wi8e3uGT76NqSU2tCQ/IRPPceXMOjV5CG/aMYyMfGjWTikkm+K2lStQNtpNKJi+jrugPsGUvry1JOt6ZsJjg7Z1cTfGb5wqrQ1cX+vGBnedzXIjD1N49pZKWS7fL+W5pj9wFez9dF8V2NjFXRm5WfFgcZUbvVNL1+uUn2HkIfIvq+VGrqG1W46gnKWgnK2gnK2gnK2gnK2gnK2gnK2gnK2gnK2gnK2gnK3813IBsZjg/aJ/sbUaEG+DIQiCIAiCIAiCIAiCIAiCIAgChb81/H+0CjXEsgAAAABJRU5ErkJggg==">
+                                <div style = "margin-left:10px"><a href ="{% url "profile" account=comment.username %}">{{comment.username}}</a></div>
+                                <div style = "margin-left:10px">{{comment.date}}</div>
+                            </div>
+                            <div style = "margin-left:40px;margin-bottom:10px">{{comment.comm}}</div>
+                            <div id = "upvoteandreply">
+                                <div><button class = "buttons">Upvote</button></div>
+                                <div><button class = "buttons">Reply</button></div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div id = "followingbar">
+        <div id = "followingnames">
+            <div style = "padding:10px">
+                Displaying posts from the following users:
+            </div>
+            {% for name in request.user.following.all %}
+            <div class = 'eachname'>
+                <div id = "following-left">
+                    <img class = "followingimage" src = "{{name.image.url}}" width = '40px' > <a href = "{{ name.get_absolute_url }}">{{name}}</a>
+                </div>
+                <div>
+                    <button>Unfollow</button>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<script src="{% static 'project/home.js' %}"></script>
+{% endblock %}

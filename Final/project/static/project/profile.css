@@ -1,0 +1,187 @@
+#profileinfo {
+  display: flex;
+  flex-direction: row;
+}
+.buttons {
+  height: 30px;
+  width: auto;
+  text-align: center;
+  padding-right: 10px;
+  padding-left: 10px;
+  line-height: 30px;
+  border-bottom: 2px solid white;
+}
+.buttons:hover {
+  transition: 200ms;
+  cursor: pointer;
+  background-color: lightgrey;
+}
+#buttonsdiv {
+  width: 600px;
+  display: flex;
+}
+#buttonswrapper {
+  width: 600px;
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
+}
+#info {
+  width: 600px;
+}
+#eachpost {
+  padding: 10px;
+  margin: 10px;
+}
+#eachcomment {
+  padding: 10px;
+  margin: 10px;
+}
+#profilepage {
+  margin-left: 150px;
+}
+#nameoffollowers {
+  border-bottom: 1px solid lightgray;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 40px;
+  line-height: 40px;
+}
+#nameoffollowing {
+  border-bottom: 1px solid lightgray;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 40px;
+  line-height: 40px;
+}
+#followercount {
+  padding: 10px;
+  border-bottom: 1px solid black;
+}
+#followingcount {
+  padding: 10px;
+  border-bottom: 1px solid black;
+}
+.userlink {
+  text-decoration: none;
+  color: black;
+}
+.userlink:hover {
+  text-decoration: underline;
+  color: black;
+}
+#followbutton {
+  width: 100px;
+  border-radius: 25px;
+  outline: none;
+  background-color: rgb(34, 89, 241);
+  color: white;
+  border: none;
+  display: flex;
+  justify-content: space-around;
+}
+#followbutton:hover {
+  cursor: pointer;
+}
+
+.overlay {
+  height: 100%;
+  width: 100%;
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.9);
+  overflow-x: hidden;
+  transition: 0.5s;
+}
+
+.overlaycontent {
+  position: relative;
+  text-align: center;
+  color: black;
+  border: 1px solid white;
+  width: 30%;
+  height: 50%;
+  position: fixed;
+  top:25%;
+  left:35%;
+  margin-top: auto;
+  margin-left: auto;
+  background-color: white;
+}
+
+.closebutton {
+  font-size: 15px;
+  text-decoration: none;
+  color: black;
+  margin-right: 10px;
+}
+#desctop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height:100%;
+}
+
+#descriptionarea{
+  width:90%;
+  height: 30vh;
+  position:relative;
+  top:20%;
+  outline:none;
+  font-size: 1.8rem;
+}
+
+#submit{
+  position: relative;
+  top:20%;
+  color:white;
+  background-color: rgb(50,50,250);
+  border: none;
+  outline: none;
+  height: 30px;
+  width:100px;
+  border-radius: 4%;
+}
+
+#xofdesc{
+position: absolute;
+right:0%;
+text-decoration: none;
+font-size: 2ch;
+
+}
+
+#descriptionbutton {
+  border-radius: 25px;
+  border: none;
+  outline: none;
+  height: 30px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+#profilewhole {
+  display: flex;
+}
+#rightside {
+  width: 600px;
+  word-break: break-all;
+  margin-left: 50px;
+  margin-top: 40px;
+}
+#topright {
+  width: 400px;
+  padding-left: 100px;
+}
+#title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+#profileimage {
+  width: 150px;
+  border-radius: 70px;
+}

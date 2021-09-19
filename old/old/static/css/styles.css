@@ -1,0 +1,204 @@
+@import url("https://fonts.googleapis.com/css2?family=Courgette&display=swap");
+
+:root {
+  --fontstyle: Times New Roman;
+  --overlay: rgb(194, 21, 194);
+  --fontcolor: green;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+  width: 100%;
+}
+
+.footer{
+  margin-top:40px;
+  background-color: black;
+  color: white;
+  padding: 30px;
+}
+
+.nav{
+  width: 100%;
+}
+
+.nav ul{
+  display: flex;
+  list-style: none;
+}
+
+.nav ul li{
+  padding: 1em;
+}
+
+.nav ul li a{
+  text-decoration: none;
+  color:black
+}
+
+.navImage{
+  width: 100%;
+  background-color: var(--overlay);
+  height:95vh;
+  margin-bottom: 50px;
+}
+
+.navImage img{
+  width: 100%;
+  object-fit: cover;
+  height: 100%;
+  mix-blend-mode: multiply;
+}
+
+main {
+  height: 100%;
+}
+
+.initiative {
+  padding: 20px 0px;
+  margin-bottom: 40px;
+}
+
+.initiativeImg {
+  background-color: var(--overlay);
+  border-radius: 10px;
+  box-shadow: 10px 10px 10px orange;
+  position: relative;
+}
+
+.initiativeImg::before {
+  position: absolute;
+  content: "Sociele's Initiative";
+  right: -5%;
+  top: -5%;
+  font-size: 3rem;
+  width: 100px;
+  color: rgb(29, 235, 166);
+  font-weight: bold;
+  z-index: 1;
+}
+
+.inImg {
+  mix-blend-mode: multiply;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.initiativeBody {
+  padding: 30px;
+  margin-top: 100px;
+  font-size: 1.1rem;
+  font-style: italic;
+}
+
+.rates{
+  box-shadow: 0px 2px 10px rgb(189, 186, 186);
+}
+
+.ratesTop {
+  position: relative;
+  height: 200px;
+  background-color: var(--overlay);
+}
+
+.rates span {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 1em;
+  font-size: 1.5rem;
+  color: white;
+}
+
+.rates-odd {
+  padding: 40px;
+  background-color: rgb(247, 199, 194);
+}
+.rates-even {
+  padding: 40px;
+}
+
+.ratesImg {
+  width: 100%;
+  object-fit: cover;
+  height: 200px;
+  mix-blend-mode: multiply;
+}
+
+.ratesHeading {
+  padding: 10px;
+  font-size: 2rem;
+  color: var(--fontstyle);
+}
+
+.ratesCost {
+  padding: 0 1em 1em 1em;
+  font-size: 1.2rem;
+}
+
+.ratesBody {
+  padding: 0 1em 1em 1em;
+}
+
+.teamHeader {
+  padding: 30px;
+}
+
+.teamImg {
+  object-fit: cover;
+}
+
+.teamBody-top {
+  padding: 10px 50px;
+}
+
+.teamBody-top-info p {
+  padding: 20px;
+}
+
+.teamBody-bottom-info {
+  text-align: end;
+}
+
+.teamBody-bottom-info p {
+  padding: 20px;
+}
+
+.teamBody-bottom {
+  padding: 10px 50px;
+}
+
+span[data-type="name"] {
+  padding: 0px 20px;
+  font-size: 1.3rem;
+}
+span[data-type="position"] {
+  padding: 0px 20px;
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+@media (min-width: 992px) {
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+}
+
+@media (max-width: 767px) {
+  .initiativeImg::before {
+    display: none;
+  }
+  .initiativeBody {
+    padding: 30px;
+    margin-top: 30px;
+    font-size: 1.1rem;
+    font-style: italic;
+  }
+}

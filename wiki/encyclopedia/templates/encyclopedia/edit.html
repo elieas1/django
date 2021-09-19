@@ -1,0 +1,23 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Encyclopedia
+    
+{% endblock %}
+
+{% block body %}
+    <form action = "edit", method = "POST">
+        {% csrf_token %}
+        <div style = "font-family: Times New Roman ;font-size: 40px;margin:auto; text-align: center;">
+            <br>
+        <input name = "asd" value = "{{title}}" hidden = "hidden">EDITING: {{title}}</button>
+        </div>
+        <div style = "text-align:center;margin-top:30px;">
+        <textarea name = "editdesc" placeholder = "Text" required = "required" style="width:500px;height:300px;">{{link}}</textarea>
+        </div>
+        <div style = "text-align:center ;margin-top:30px">
+            <button style="color :white;background-color: rgb(46, 125, 230); border: 0px;width: 200px;" name = "save" value = "save">Save Changes</button>
+        </form>
+            <a href = "{{title}}"><button style="color :white;background-color: rgb(46, 125, 230); border: 0px;width: 200px;" >Cancel Editing</button></a>
+        </div>
+{% endblock %}

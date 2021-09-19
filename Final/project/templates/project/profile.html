@@ -1,0 +1,107 @@
+{% extends "project/layout.html" %}
+{% load static %}
+{% block head %}
+    <link href="{% static 'project/profile.css' %}" rel="stylesheet">
+{% endblock %}
+{% block body %}
+<div id = "profilewhole">
+    <div id = "profilepage">
+        <div style = "width: 600px;margin-top:20px" id = "header">
+            <div id = "profileinfo">
+                <div><img id = "profileimage" src="{{profile.image.url}}"></div>
+                <div id = "username" style="height:120px;line-height: 120px;font-size: 1.4rem;margin-left:10px"><strong>{{profile.username}}</strong></div>
+            </div>
+            <div>
+                {% if account == user.username %}
+                    {% if profile.description %}
+                        {{profile.description}} <button id = "descriptionbutton" onclick = {opendescription()}>Edit</button>
+                    {% else %}
+                        <button id = "descriptionbutton" onclick = {opendescription()}>Add a description</button>
+                    {% endif %}
+                {% else %}
+                    {% if profile.description %}
+                    <div >{{profile.description}}</div>
+                    {% else %}
+                        <div>User has not added a description</div>
+                    {% endif %}
+                {% endif %}
+            </div>
+            <div>
+                {% if account != request.user.username %}
+                    {% if profile in request.user.following.all %}
+                    <button id = "descriptionbutton" onclick="followprofile(this)">UnFollow</button>
+                    {% else %}
+                    <button id = "descriptionbutton" onclick="followprofile(this)">Follow</button>
+                    {% endif %}
+                <button id = "sendmessage" >Send Message</button>
+                {% endif %}
+            </div>
+        </div>
+        <div id = "buttonswrapper">
+            <div id = "buttonsdiv">
+                <div class = "buttons" id = "loadposts">{{profile.userpost.all|length}} Post{{profile.userpost.all|length|pluralize}}</div>
+                <div class = "buttons" id = "loadcomments">{{profile.usercomment.all|length}} Comment{{profile.usercomment.all|length|pluralize}}</div>
+                <div class = "buttons" id = "loadfollowers">{{profile.followers.all.count}} Follower{{profile.followers.all.count|pluralize}}</div>
+                <div class = "buttons" id = "loadfollowing">{{profile.following.count}} Following</div>
+            </div>
+        </div>
+        <div id = "info">
+            <div id = "following" hidden>
+                <div id = "followercount">
+                    {{profile.following.all.count}} Following
+                </div>
+                {% for p in profile.following.all %}
+                <div id = "nameoffollowers">
+                        <div id = "username">
+                            <a class="userlink" href ="{% url "profile" account=p.username %}">{{p.username}}</a>
+                        </div>
+                        <div>
+                            {{userinfo.following.all}}
+                            <button id = "followbutton" onclick = {follow(this)}>
+                                <div id = "insidebutton">
+                                
+                                {% if p in userinfo.following.all %}
+                                <div>UnFollow</div>
+                                {% else %}
+                                <div>Follow</div>
+                                {% endif %}
+                                <div>{{p.followers.count}}</div>
+                                </div>
+                            </button>
+                        </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div id = "rightside">
+        <div id = "topright">
+            Credentials & Highlights
+            <hr>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<div id="description" class = "overlay">
+    <div class = "overlaycontent">
+        <div id = "desctop">
+            <div>
+                <a href="javascript:void(0)" id = 'xofdesc' class="closebutton" onclick="closedescription()"><strong>X</strong></a>
+            </div>
+            <form action = "{% url "profile" account=request.user.username %}" method = "POST">
+                {% csrf_token %}
+                <textarea name = "description" id = "descriptionarea" placeholder="Enter description">{{request.user.description}}</textarea>
+                <input name = "submitdesc" id = "submit" type = submit>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="{% static 'project/profile.js' %}"></script>
+
+{% endblock %}
